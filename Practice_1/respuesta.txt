@@ -1,0 +1,1 @@
+Esto es un programa en c.Esto es una prueba de escribir texto en un archivo usando c.

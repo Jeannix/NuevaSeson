@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1504977343 source:c:\users\alumno-c\downloads\practice_1\functions.cpp
+	"Functions.h"
+
+1504977357 c:\users\alumno-c\downloads\practice_1\functions.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<iostream>
+
+1504978197 source:c:\users\alumno-c\downloads\practice_1\main.cpp
+	<iostream>
+	"Functions.h"
+
