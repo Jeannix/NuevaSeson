@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1506187757 source:d:\instaladores\programacion\practica_1_c\functions_c.cpp
+	"Functions_C.h"
+
+1506187896 d:\instaladores\programacion\practica_1_c\functions_c.h
+	"Functions_S.h"
+
+1506187691 d:\instaladores\programacion\practica_1_c\functions_s.h
+	<iostream>
+	<fstream>
+	<string>
+	<windows.h>
+
+1506187691 source:d:\instaladores\programacion\practica_1_c\functions_s.cpp
+	"Functions_S.h"
+
