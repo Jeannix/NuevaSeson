@@ -1,8 +1,8 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
-class Posicion{
+class Posicion
+{
 public:
     int x, y;
     Posicion(){
@@ -17,57 +17,97 @@ public:
         x=p.x;
         y=p.y;
     }
-    void printP(){
-        cout<<x<<y<<endl;
-    }
 };
-class Dama{
-private:
-    bool flag;
+
+class Pieza
+{
+protected:
     Posicion pos;
+private:
+    const string nombre_p;
     string color;
 public:
-    Dama(){
-        flag=0;
-        color="Negra";
+    Pieza():nombre_p(){}
+    Pieza(string nombre):nombre_p(nombre){
+        color="Blanca";
     }
-    Dama(Posicion p, string c2){
-        pos=p;
-        color=c2;
+    static int piezasActivas;
+    const string getNombre(){return nombre_p;}
+    Posicion getPosicion(){
+        return pos;
     }
-    Dama(Dama &x){
-        flag=x.flag;
-        pos=x.pos;
-        color=x.color;
+    void setPosicion(Posicion pos_1){
+        pos.x=pos_1.x;
+        pos.y=pos_1.y;
     }
-    int setPosx(int x2){pos.x=x2;return pos.x;}
-    int setPosy(int y2){pos.y=y2;return pos.y;}
-    string setColor(string color1){color=color1;return color;}
-    void printCol(){
-        cout<<color<<endl;
-    }
-    int getPosx(){return pos.x;}
-    int getPosy(){return pos.y;}
-    void changeP(int a_1,int b_1){
-        pos.x+=a_1;
-        pos.y+=b_1;
+    virtual void avanzarPieza(){
+        cout<<"Avanzar Pieza"<<endl;
+        pos.x++;
     }
 };
-class Tablero{
-private:
-    //int **mat,N_c,N_f;
-    Dama damas[8][8];
-public:
-    Tablero(){
+int Pieza::piezasActivas=0;
 
+class Peon:public Pieza
+{
+public:
+    Peon():Pieza(){}
+    Peon(string nombre):Pieza(nombre){}
+    void avanzarPieza(){
+        cout<<"Avanzar Peon"<<endl;
+        pos.y++;
     }
 };
+
+class Caballo:private Pieza
+{
+    Caballo():Pieza(){}
+    Caballo(string nombre):Pieza(nombre){}
+    void avanzarPieza(){
+        cout<<"Avanzar Caballo"<<endl;
+        pos.x+=2;
+        pos.y+=1;
+    }
+
+};
+
+class Torre:private Pieza
+{
+    Torre():Pieza(){}
+    Torre(string nombre):Pieza(nombre){}
+    void avanzarPieza(bool m,int x){
+        cout<<"Avanzar Torre"<<endl;
+        if (m==0){
+            pos.x+=x;
+        }
+        else
+            pos.y+=x;
+    }
+};
+
+class Arfil:private Pieza
+{
+    Arfil():Pieza(){}
+    Arfil(string nombre):Pieza(nombre){}
+    void avanzaPieza(bool m,int x){
+        cout<<"Avanzar Arfil"<<endl;
+        if (m==0){
+             pos.x+=x;
+             pos.y+=x;
+        }
+        else
+            pos.x-=x;
+            pos.y-=x;
+    }
+};
+
 int main()
 {
-    Tablero tab;
-    Dama D;
-    D.printCol();
-    cout << D.getPosx() << endl;
-    cout << D.getPosy() << endl;
+    Posicion p_B(1,1);
+    Peon per;
+    per.setPosicion(p_B);
+    Pieza::piezasActivas++;
+    Pieza p;
+    p.piezasActivas++;
+    cout << Pieza::piezasActivas << endl;
     return 0;
 }
