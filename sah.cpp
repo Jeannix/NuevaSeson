@@ -43,15 +43,17 @@ public:
         pos.x=x1;
         pos.y=y1;
     }
-    virtual void avanzarPieza(){
-        cout<<"Avanzar Pieza"<<endl;
-        pos.x++;
-    }
-    virtual void dibujarPieza(){
-        cout<<"-";
+    virtual char dibujarPieza(){
+        return '-';
     }
     void borrarPieza(){
         cout<<" ";
+    }
+    virtual void avanzarPieza(){
+        borrarPieza();
+        cout<<"Avanzar Pieza"<<endl;
+        pos.x++;
+        dibujarPieza();
     }
     void equipo(Pieza p1, Pieza p2){
         if (p1.color_p!=p2.color_p)
@@ -69,12 +71,13 @@ class Peon:public Pieza
 public:
     Peon():Pieza(){}
     Peon(string nombre):Pieza(nombre){}
+    Peon(string nombre,string color):Pieza(nombre,color){}
     void avanzarPieza(){
         cout<<"Avanzar Peon"<<endl;
         pos.y++;
     }
-    void dibujarPieza(){
-        cout<<"X";
+    char dibujarPieza(){
+        return 'X';
     }
 };
 
@@ -82,13 +85,14 @@ class Caballo:private Pieza
 {
     Caballo():Pieza(){}
     Caballo(string nombre):Pieza(nombre){}
+    Caballo(string nombre,string color):Pieza(nombre,color){}
     void avanzarPieza(){
         cout<<"Avanzar Caballo"<<endl;
         pos.x+=2;
         pos.y+=1;
     }
-    void dibujarPieza(){
-        cout<<"L";
+    char dibujarPieza(){
+        return 'L';
     }
 
 };
@@ -97,6 +101,7 @@ class Torre:private Pieza
 {
     Torre():Pieza(){}
     Torre(string nombre):Pieza(nombre){}
+    Torre(string nombre,string color):Pieza(nombre,color){}
     void avanzarPieza(bool m,int x){
         cout<<"Avanzar Torre"<<endl;
         if (m==0){
@@ -105,8 +110,8 @@ class Torre:private Pieza
         else
             pos.y+=x;
     }
-    void dibujarPieza(){
-        cout<<"T";
+    char dibujarPieza(){
+        return 'T';
     }
 };
 
@@ -114,6 +119,7 @@ class Arfil:private Pieza
 {
     Arfil():Pieza(){}
     Arfil(string nombre):Pieza(nombre){}
+    Arfil(string nombre,string color):Pieza(nombre,color){}
     void avanzaPieza(bool m,int x){
         cout<<"Avanzar Arfil"<<endl;
         if (m==0){
@@ -124,8 +130,8 @@ class Arfil:private Pieza
             pos.x-=x;
             pos.y-=x;
     }
-    void dibujarPieza(){
-        cout<<"A";
+    char dibujarPieza(){
+        return 'A';
     }
 };
 
@@ -139,6 +145,30 @@ class Tablero:public Pieza{
             }
         }
     }
+    void imprimirmat(){
+    for(int i=0;i<8;i++){
+        for(int j=0;j<8;j++){
+//            if(i%2==0)
+//            cout<<" ";
+//            else
+//                cout<<"| ";
+            cout<<mat[i][j].dibujarPieza();
+        }
+    cout<<endl;
+        }
+    }
+    void imprimirmat(Peon peones){
+        cout<<mat[1][1].dibujarPieza();
+        cout<<peones.dibujarPieza();
+    }
+    void avanzarPieza(Posicion po){
+        po=pos;
+        Pieza p("pepe","Blanco");
+        Pieza *pp=&p;
+        p.dibujarPieza();
+        pp->avanzarPieza();
+        p.dibujarPieza();
+    }
 };
 
 int main()
@@ -148,6 +178,12 @@ int main()
     per.setPosicion(p_B);
     Pieza::piezasActivas++;
     Tablero T;
+    Peon peones;
+    T.imprimirmat();
+    T.imprimirmat(peones);
+    T.avanzarPieza(p_B);
+    T.imprimirmat(peones);
+    T.imprimirmat();
     cout << Pieza::piezasActivas << endl;
     return 0;
 }
