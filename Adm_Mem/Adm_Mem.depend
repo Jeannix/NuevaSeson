@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1510421491 source:c:\users\alumno-c\downloads\adm_mem\src\calle.cpp
+	"Calle.h"
+
+1510422837 c:\users\alumno-c\downloads\adm_mem\include\calle.h
+	<string>
+	<iostream>
+
+1510422735 source:c:\users\alumno-c\downloads\adm_mem\main.cpp
+	<iostream>
+	"Calle.h"
+
+1510420474 source:c:\users\alumno-c\downloads\adm_mem\src\mapa.cpp
+	"Mapa.h"
+
+1510420470 c:\users\alumno-c\downloads\adm_mem\include\mapa.h
+	"Mapa.h"
+	"Calle.h"
+
