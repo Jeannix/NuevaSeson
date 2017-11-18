@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1511021184 source:c:\users\alumno-c\downloads\urbx\urbxyz.cpp
+	"urbxyz.h"
+
+1511023310 c:\users\alumno-c\downloads\urbx\urbxyz.h
+	<iostream>
+	<string>
+
+1511023440 source:c:\users\alumno-c\downloads\urbx\main.cpp
+	<iostream>
+	"urbxyz.h"
+
