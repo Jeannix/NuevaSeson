@@ -1,6 +1,7 @@
 #include <iostream>
 #include <set>
 #include <fstream>
+#include <stdexcept>
 
 using namespace std;
 enum tipoCalle {AVENIDA,CALLE,PASAJE,GIRON,CARRETERA};
@@ -42,6 +43,7 @@ class Distrito
 {
 public:
     Distrito(){}
+    Calle getCalle(string nombre){set<Calle>::iterator it;for(it=calles.begin();it!=calles.end()){if ((*it)==nombre)return Calle;}}
     string nombre;
     void _addcalle(Calle c){calles.insert(c);}
     void _imprimirCalles(){set<Calle>::iterator it;for(it=calles.begin();it!=calles.end();it++)cout<<(*it)<<endl;}
